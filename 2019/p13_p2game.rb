@@ -19,31 +19,7 @@ a = IO.read("in13.txt").split(",").map(&:to_i)
 a[0] = 2
 
 engine = IntCode.new(a)
-#tiles = {}
 score = 0
-
-def draw(tiles)
-	x_min = tiles.keys.map{|x,y|x}.min
-	y_min = tiles.keys.map{|x,y|y}.min
-	x_max = tiles.keys.map{|x,y|x}.max
-	y_max = tiles.keys.map{|x,y|y}.max
-
-	y_min.upto(y_max){|y|
-		x_min.upto(x_max){|x|
-			print case tiles[[x,y]]
-			when 0 then ' '
-			when 1 then '#'
-			when 2 then '?'
-			when 3 then '_'
-			when 4 then '*'
-			else
-				' '
-			end
-		}
-		puts
-	}
-	puts
-end
 
 begin
   	win = Curses::Window.new(0, 0, 1, 2)
