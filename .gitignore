@@ -1,2 +1,3 @@
 */.venv/*
 */Gemfile.lock
+**/.ipynb_checkpoints/*
