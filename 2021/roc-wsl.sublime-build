@@ -1,0 +1,6 @@
+{
+	"shell_cmd": "ubuntu run \"/mnt/c/tools/roc_nightly-linux_x86_64-2022-12-30-ea53a50/roc dev --prebuilt-platform true `wslpath '${file}'`",
+	"shell": true,
+	"working_dir": "$file_path",
+	"selector": "source.roc"
+}

@@ -1,3 +1,5 @@
 */.venv/*
 */Gemfile.lock
 **/.ipynb_checkpoints/*
+/2021/cli/*
+/2021/day*
