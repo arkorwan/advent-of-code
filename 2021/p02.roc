@@ -7,7 +7,7 @@ main =
     solve = \input ->
         commands = Str.split input "\n"
             |> List.keepOks \line ->
-                args = Str.split line " " |> List.map Str.trim
+                args = Str.split line " "
                 when args is
                 [x1, x2] -> Str.toI32 x2 |> Result.map \steps -> Command x1 steps
                 _ -> Err InvalidNumStr

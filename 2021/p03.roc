@@ -5,7 +5,7 @@ app "day03"
 
 main =
     solve = \input ->
-        lines = Str.split input "\n" |> List.map Str.trim
+        lines = Str.split input "\n"
 
         l = List.get lines 0
             |> Result.map Str.countGraphemes

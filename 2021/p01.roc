@@ -5,7 +5,7 @@ app "day01"
 
 main =
     solve = \input ->
-        lines = Str.split input "\n" |> List.map Str.trim
+        lines = Str.split input "\n"
         nums = lines |> List.keepOks Str.toU16
         
         # part 1
