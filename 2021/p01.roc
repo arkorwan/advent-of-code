@@ -6,7 +6,7 @@ app "day01"
 main =
     solve = \input ->
         lines = Str.split input "\n" |> List.map Str.trim
-        nums = lines |> List.map \s -> Result.withDefault (Str.toU16 s) 0
+        nums = lines |> List.keepOks Str.toU16
         
         # part 1
         ans1 = List.map2 nums (List.dropFirst nums) Pair

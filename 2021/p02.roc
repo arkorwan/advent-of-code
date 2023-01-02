@@ -9,10 +9,8 @@ main =
             |> List.keepOks \line ->
                 args = Str.split line " " |> List.map Str.trim
                 when args is
-                [x1, x2] -> when Str.toI32 x2 is
-                    Ok steps -> Ok (Command x1 steps)
-                    _ -> Err "integer conversion failed" 
-                _ -> Err "need list of size 2"
+                [x1, x2] -> Str.toI32 x2 |> Result.map \steps -> Command x1 steps
+                _ -> Err InvalidNumStr
         ans1 = 
             fold = List.walk commands { x: 0, y: 0} \state, Command direction steps ->
                 when direction is
