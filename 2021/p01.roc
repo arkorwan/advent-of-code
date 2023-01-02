@@ -26,7 +26,7 @@ main =
         |> Task.map solve
         |> Task.attempt \result ->
             when result is
-                Ok res -> 
-                    _ <- Task.await (Stdout.line res.ans1)
-                    Stdout.line res.ans2
-                Err _  -> Stderr.line "error!"
+            Ok res -> 
+                _ <- Task.await (Stdout.line res.ans1)
+                Stdout.line res.ans2
+            Err _  -> Stderr.line "error!"
