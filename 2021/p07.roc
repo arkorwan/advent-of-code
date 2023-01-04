@@ -15,14 +15,15 @@ main =
         # pick the cheapest
         optimalFuel = \costFunc ->
             List.range { start: At minPosition, end: At maxPosition }
-                |> List.map \x ->
-                    nums |> List.map (\y -> costFunc x y) |> List.sum
-                |> List.min |> Result.withDefault 0
+            |> List.map \x ->
+                nums |> List.map (\y -> costFunc x y) |> List.sum
+            |> List.min
+            |> Result.withDefault 0
 
         # part 1
         cost1 = \x, y -> Num.abs (x - y)
         ans1 = optimalFuel cost1 |> Num.toStr
-        
+
         # part 2
         cost2 = \x, y ->
             d = cost1 x y
@@ -32,11 +33,12 @@ main =
         { ans1, ans2 }
 
     Path.fromStr "data/07.txt"
-        |> File.readUtf8
-        |> Task.map solve
-        |> Task.attempt \result ->
-            when result is
-            Ok res -> 
+    |> File.readUtf8
+    |> Task.map solve
+    |> Task.attempt \result ->
+        when result is
+            Ok res ->
                 _ <- Task.await (Stdout.line res.ans1)
                 Stdout.line res.ans2
-            Err _  -> Stderr.line "error!"
+
+            Err _ -> Stderr.line "error!"
