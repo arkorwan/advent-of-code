@@ -14,28 +14,21 @@ main =
 
         { whenTrue: perpendiculars, whenFalse: diagonals } = RichList.partition segments \s -> (s.x1 == s.x2) || (s.y1 == s.y2)
 
-        increment = \dict, key -> 
-            Dict.update dict key \current ->
-                when current is
-                Missing -> Present 1
-                Present x -> Present (x + 1)
-        
         sort2 = \n1, n2 -> if n1 <= n2 then {min: n1, max: n2} else {min: n2, max: n1}
 
         # part 1
 
         # track all the coordinates in a Dict
-        counter1 = List.walk perpendiculars Dict.empty \ct1, segment ->
+        coords1 = List.joinMap perpendiculars \segment ->
             if segment.x1 == segment.x2 then
                 ordered = sort2 segment.y1 segment.y2
                 List.range { start: At ordered.min, end: At ordered.max }
-                    |> List.walk ct1 \ct2, i ->
-                        increment ct2 {x: segment.x1, y: i}
+                    |> List.map \i -> {x: segment.x1, y: i}
             else
                 ordered = sort2 segment.x1 segment.x2
                 List.range { start: At ordered.min, end: At ordered.max }
-                    |> List.walk ct1 \ct2, i ->
-                        increment ct2 {x: i, y: segment.y1}
+                    |> List.map \i -> {x: i, y: segment.y1}
+        counter1 = RichList.frequency coords1 Dict.empty
         
         ans1 = Dict.walk counter1 0 ( \n, _, v -> if v == 1 then n else n + 1 )
             |> Num.toStr
@@ -43,16 +36,15 @@ main =
         # part 2
 
         # start with the Dict from part 1, add the diagonals
-        counter2 = List.walk diagonals counter1 \ct1, segment ->
+        coords2 = List.joinMap diagonals \segment ->
             ordered = sort2 segment.x1 segment.x2
             if segment.x1 - segment.y1 == segment.x2 - segment.y2 then
                 List.range { start: At ordered.min, end: At ordered.max }
-                    |> List.walk ct1 \ct2, i ->
-                        increment ct2 {x: i, y: i - segment.x1 + segment.y1 }
+                    |> List.map \i -> {x: i, y: i - segment.x1 + segment.y1 }
             else
                 List.range { start: At ordered.min, end: At ordered.max }
-                    |> List.walk ct1 \ct2, i ->
-                        increment ct2 {x: i, y: segment.x1 + segment.y1 - i }
+                    |> List.map \i -> {x: i, y: segment.x1 + segment.y1 - i }
+        counter2 = RichList.frequency coords2 counter1
 
         ans2 = Dict.walk counter2 0 ( \n, _, v -> if v == 1 then n else n + 1 )
             |> Num.toStr

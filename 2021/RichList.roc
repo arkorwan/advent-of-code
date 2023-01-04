@@ -1,6 +1,7 @@
 interface RichList
     exposes [
         partition,
+        frequency,
         bestBy,
         minBy,
         maxBy
@@ -14,6 +15,15 @@ partition = \xs, predicate ->
             { state & whenTrue  : List.append state.whenTrue x }
         else
             { state & whenFalse : List.append state.whenFalse x }
+
+frequency : List a, Dict a (Int b) -> Dict a (Int b)
+frequency = \xs, start ->
+    increment = \dict, key -> 
+            Dict.update dict key \current ->
+                when current is
+                Missing -> Present 1
+                Present x -> Present (x + 1)
+    List.walk xs start increment
 
 bestBy : List a, (a -> b), (b, b -> Bool)  -> Result a [ListWasEmpty]
 bestBy = \xs, mapper, comparator ->
