@@ -15,10 +15,9 @@ main =
         # pick the cheapest
         optimalFuel = \costFunc ->
             List.range { start: At minPosition, end: At maxPosition }
-            |> List.map \x ->
-                nums |> List.map \y -> costFunc x y 
-                |> List.sum
-            |> List.min |> Result.withDefault 0
+                |> List.map \x ->
+                    nums |> List.map (\y -> costFunc x y) |> List.sum
+                |> List.min |> Result.withDefault 0
 
         # part 1
         cost1 = \x, y -> Num.abs (x - y)
