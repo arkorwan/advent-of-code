@@ -2,6 +2,7 @@ interface Func
     exposes [
         identity,
         repeat,
+        repeatUntil,
     ]
     imports []
 
@@ -14,3 +15,10 @@ repeat = \func, n, state ->
         state
     else
         repeat func (n - 1) (func state)
+
+repeatUntil : (a -> a), (a -> Bool), a -> a
+repeatUntil = \func, condition, state ->
+    if condition state then
+        state
+    else
+        repeatUntil func condition (func state)
