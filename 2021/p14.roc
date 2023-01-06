@@ -35,18 +35,17 @@ main =
             when freq1 is
                 [a, .., z] -> Num.toStr (z - a)
                 _ -> "Error!"
-        
+
         # part 2
-        # 
+        #
         # The polymer size is O(2**n), with n = 40 it's no longer feasible to produce the elements one by one.
         # Consider any pairs from the original polymer, we can derive the whole set of descendants from the pair
         # independently from the rest of the polymer. So we can count the descendants of each pair, then add the
         # original polymer, to get the full count.
-        # 
+        #
         # If we have rule xy -> z, then the count of k-level descendants of xy is:
         # {z:1} ++ (k-1)-level descendants of xz ++ (k-1)-level descendants of zy.
-        # We can compute all of this bottom up, with the bottommost level having 0 descendants for all pairs.  
-
+        # We can compute all of this bottom up, with the bottommost level having 0 descendants for all pairs.
         countDescendants = \lowerLevel ->
             List.map ruleList \T (Pair x y) m ->
                 lh = Dict.get lowerLevel (Pair x m) |> Result.withDefault Dict.empty
