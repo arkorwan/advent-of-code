@@ -5,6 +5,7 @@ interface RichList
         bestBy,
         minBy,
         maxBy,
+        dropFirst,
     ]
     imports []
 
@@ -45,3 +46,8 @@ minBy = \xs, mapper -> bestBy xs mapper (\x, y -> x < y)
 
 maxBy : List a, (a -> Num b) -> Result a [ListWasEmpty]
 maxBy = \xs, mapper -> bestBy xs mapper (\x, y -> x > y)
+
+dropFirst : List a, Nat -> List a
+dropFirst = \xs, n ->
+    l = List.len xs
+    List.takeLast xs (l - n)
