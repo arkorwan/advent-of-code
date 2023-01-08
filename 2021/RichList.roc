@@ -6,6 +6,7 @@ interface RichList
         minBy,
         maxBy,
         dropFirst,
+        reduce,
     ]
     imports []
 
@@ -51,3 +52,9 @@ dropFirst : List a, Nat -> List a
 dropFirst = \xs, n ->
     l = List.len xs
     List.takeLast xs (l - n)
+
+reduce : List a, (a, a -> a) -> Result a [ListWasEmpty]
+reduce = \xs, reducer ->
+    when xs is
+        [] -> Err ListWasEmpty
+        [head, ..] -> Ok (List.walk (List.dropFirst xs) head reducer)

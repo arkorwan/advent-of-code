@@ -3,6 +3,7 @@ interface Binary
         strToNat,
         listToNat,
         hexToBits,
+        numToBits,
     ]
     imports []
 
@@ -22,6 +23,11 @@ listToNat = \xs ->
                 0 -> Ok (n * 2)
                 1 -> Ok (n * 2 + 1)
                 _ -> Err InvalidBinary
+
+numToBits : Int * -> List U8 
+numToBits = \n ->
+    if n <= 1 then [Num.toU8 n]
+    else List.append (numToBits (n // 2)) (Num.toU8 (n % 2))
 
 hexToBits : Str -> Result (List U8) [InvalidBinary]
 hexToBits = \hexstring ->
