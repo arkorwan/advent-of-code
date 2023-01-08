@@ -53,15 +53,15 @@ main =
             remain * winningNumber
 
         # part 1
-        firstWin = completionOrder |> RichList.minBy .order
         ans1 =
+            firstWin = completionOrder |> RichList.minBy .order
             when firstWin is
                 Ok b -> Num.toStr (boardScore b.board b.order)
                 _ -> "Error"
 
         # part 2
-        lastWin = completionOrder |> RichList.maxBy .order
         ans2 =
+            lastWin = completionOrder |> RichList.maxBy .order
             when lastWin is
                 Ok b -> Num.toStr (boardScore b.board b.order)
                 _ -> "Error"
