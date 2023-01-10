@@ -3,6 +3,7 @@ interface Func
         identity,
         repeat,
         repeatUntil,
+        takeUntil,
     ]
     imports []
 
@@ -22,3 +23,12 @@ repeatUntil = \func, condition, state ->
         state
     else
         repeatUntil func condition (func state)
+
+takeUntil : (a -> a), (a -> Bool), a -> List a
+takeUntil = \func, condition, state ->
+    recur = \history, current ->
+        if condition current then
+            history
+        else
+            recur (List.append history current) (func current)
+    recur [] state
