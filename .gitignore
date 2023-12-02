@@ -1,3 +1,6 @@
 */.venv/*
 */Gemfile.lock
 **/.ipynb_checkpoints/*
+
+/2021/cli/
+*.exe
