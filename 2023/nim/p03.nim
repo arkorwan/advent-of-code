@@ -1,4 +1,4 @@
-import strutils, strformat, sequtils, tables
+import strutils, strformat, sequtils, tables, math
 
 let
     input = readFile("../data/03.txt").strip.splitLines
@@ -56,4 +56,4 @@ for j in 1..h:
 echo partsSum
 
 # part 2
-echo allGears.values.toSeq.filterIt(it.len == 2).mapIt(it[0]*it[1]).foldl(a+b)
+echo allGears.values.toSeq.filterIt(it.len == 2).mapIt(it[0]*it[1]).sum

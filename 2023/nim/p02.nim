@@ -1,4 +1,4 @@
-import strutils, sequtils, re, tables
+import strutils, sequtils, re, tables, math
 
 const colors = {"red": 0, "green": 1, "blue": 2}.toTable
 let
@@ -22,7 +22,7 @@ echo games.map(proc(game: auto): auto =
     let valid = game[1].allIt(it[0] <= 12 and it[1] <= 13 and it[2] <= 14)
     if valid: game[0] else: 0
     )
-    .foldl(a+b)
+    .sum
 
 # part 2
 echo games.map(proc(game: auto): auto =
@@ -32,4 +32,4 @@ echo games.map(proc(game: auto): auto =
         b = game[1].mapIt(it[2]).max
     r*g*b
     )
-    .foldl(a+b)
+    .sum

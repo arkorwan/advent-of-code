@@ -1,4 +1,4 @@
-import strutils, sequtils
+import strutils, sequtils, math
 
 const
     digits = "0123456789".pairs.toSeq.mapIt(($it[1], it[0]))
@@ -19,7 +19,7 @@ func findLast(s: string, targets: seq[(string, int)]): int =
 let input = readFile("../data/01.txt").splitLines
 
 # part 1
-echo input.mapIt(findFirst(it, digits)*10 + findLast(it, digits)).foldl(a+b)
+echo input.mapIt(findFirst(it, digits)*10 + findLast(it, digits)).sum
 
 # part 2
-echo input.mapIt(findFirst(it, words)*10 + findLast(it, words)).foldl(a+b)
+echo input.mapIt(findFirst(it, words)*10 + findLast(it, words)).sum
