@@ -7,8 +7,8 @@ var score = 0
 for i, line in input:
     let
         parts = line.split(re"[:\|]")
-        a = parts[1].strip.split(re"\s+").mapIt(it.strip.parseInt)
-        b = parts[2].strip.split(re"\s+").mapIt(it.strip.parseInt)
+        a = parts[1].strip.splitWhitespace.mapIt(it.strip.parseInt)
+        b = parts[2].strip.splitWhitespace.mapIt(it.strip.parseInt)
         c = b.countIt(a.contains(it))
     score += 2^c div 2
     for j in (i+1..i+c):
