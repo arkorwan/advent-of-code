@@ -7,7 +7,6 @@ def f(t, d)
   x = (t*t - 4*d)**0.5
   a = ((t-x)/2).floor + 1
   b = ((t+x)/2).ceil - 1
-  p [t, d, a, b]
   b-a+1
 end
 
