@@ -1,4 +1,5 @@
 import strutils, sequtils, options, tables, sugar, algorithm, math
+import helpers
 
 const
     partitions = @[@[5], @[1, 4], @[2, 3], @[1, 1, 3], @[1, 2, 2], @[1, 1, 1,
@@ -9,14 +10,6 @@ const
 let
     input = readFile("../data/07.txt").strip.splitLines.mapIt(
             it.splitWhitespace)
-
-proc lexicographic(x, y: seq[int]): int =
-    if x.len == 0 or y.len == 0:
-        x.len - y.len
-    elif x[0] == y[0]:
-        lexicographic(x[1..^1], y[1..^1])
-    else:
-        x[0] - y[0]
 
 func getType(hands: seq[int], joker: Option[int]): int =
     let handsWithoutJoker = joker.map(j => hands.filterIt(it != j)).get(hands)
