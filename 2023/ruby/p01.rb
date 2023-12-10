@@ -6,14 +6,14 @@ words = digits + ["zero", "one", "two", "three", "four", "five", "six", "seven",
 def find_first(s, targets)
   targets
     .map{|w, value| [s.index(w), value]}
-    .select{|i, value| i != nil}
+    .filter{|i, value| i != nil}
     .min[1]
 end
 
 def find_last(s, targets)
   targets
     .map{|w, value| [s.rindex(w), value]}
-    .select{|i, value| i != nil}
+    .filter{|i, value| i != nil}
     .max[1]
 end
 

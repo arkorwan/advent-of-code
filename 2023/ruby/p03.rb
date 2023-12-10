@@ -64,4 +64,4 @@ end
 p @parts_sum
 
 # part 2
-p @all_gears.values.select{|vs| vs.size == 2}.map{|vs| vs[0]*vs[1]}.sum
+p @all_gears.values.filter{|vs| vs.size == 2}.map{|vs| vs[0]*vs[1]}.sum
