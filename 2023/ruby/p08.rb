@@ -26,5 +26,5 @@ end
 p find('AAA', 'ZZZ', left, right, ops)
 
 # part 2
-starts = left.keys.filter{|node| node.end_with?'A'}
-p starts.map{|start_node| find(start_node, 'Z', left, right, ops)}.reduce(:lcm)
+starts = left.keys.filter{ _1.end_with?'A' }
+p starts.map{ find(_1, 'Z', left, right, ops)}.reduce(:lcm)

@@ -3,11 +3,9 @@ input = IO.foreach('../data/03.txt').map(&:strip)
 h = input.size
 w = input[0].size
 
-@input = ['.'*(w+2)] + input.map{|line| ".#{line}."} + ['.'*(w+2)]
+@input = ['.'*(w+2)] + input.map{".#{_1}."} + ['.'*(w+2)]
 
-def is_digit(c)
-  c >= '0' && c <= '9'
-end
+def is_digit(c) = c >= '0' && c <= '9'
 
 # overall state
 @parts_sum = 0
@@ -64,4 +62,4 @@ end
 p @parts_sum
 
 # part 2
-p @all_gears.values.filter{|vs| vs.size == 2}.map{|vs| vs[0]*vs[1]}.sum
+p @all_gears.values.filter{_1.size == 2}.map{_1[0] * _1[1]}.sum

@@ -6,7 +6,7 @@ h1 = input.size
 w1 = input[0].size
 
 empty_rows = Set.new(h1.times.filter{|i| !input[i].include?('#')})
-empty_cols = Set.new(w1.times.filter{|j| !input.map{|line| line[j]}.any?{|c| c == '#'}})
+empty_cols = Set.new(w1.times.filter{|j| !input.map{|line| line[j]}.any?{_1 == '#'}})
 
 galaxies = []
 i_offset = 0

@@ -6,19 +6,19 @@ words = digits + ["zero", "one", "two", "three", "four", "five", "six", "seven",
 def find_first(s, targets)
   targets
     .map{|w, value| [s.index(w), value]}
-    .filter{|i, value| i != nil}
+    .filter{_1[0]}
     .min[1]
 end
 
 def find_last(s, targets)
   targets
     .map{|w, value| [s.rindex(w), value]}
-    .filter{|i, value| i != nil}
+    .filter{_1[0]}
     .max[1]
 end
 
 # part 1
-p input.map{|s| find_first(s, digits)}.sum * 10 + input.map{|s| find_last(s, digits)}.sum
+p input.map{find_first(_1, digits)}.sum * 10 + input.map{find_last(_1, digits)}.sum
 
 # part 2
-p input.map{|s| find_first(s, words)}.sum * 10 + input.map{|s| find_last(s, words)}.sum
+p input.map{find_first(_1, words)}.sum * 10 + input.map{find_last(_1, words)}.sum

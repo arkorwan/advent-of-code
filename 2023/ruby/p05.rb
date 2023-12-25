@@ -33,7 +33,7 @@ end
 maps = parse_map(input)
 
 def find_map_index(mappings, target)
-  i = mappings.bsearch_index{|x| x[0] > target} || mappings.size
+  i = mappings.bsearch_index{_1[0] > target} || mappings.size
   i-1
 end
 

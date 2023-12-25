@@ -3,8 +3,8 @@ input = IO.foreach('../data/02.txt').map(&:strip)
 games = input.map{|line| 
   parts = line.split(/[:;]/)
   id = parts[0].split(' ')[1].to_i
-  res = parts[1..-1].map{|x| 
-    comps = x.strip.split(/[, ]+/)
+  res = parts[1..-1].map{ 
+    comps = _1.strip.split(/[, ]+/)
     h = Hash[*comps.reverse]
     [h["red"].to_i, h["green"].to_i, h["blue"].to_i]
   }
@@ -19,5 +19,5 @@ p games.map{|id, parts|
 
 # part 2
 p games.map{|id, parts|
-  (0..2).map{|i| parts.map{|c| c[i]}.max}.reduce(:*)
+  (0..2).map{|i| parts.map{_1[i]}.max}.reduce(:*)
 }.sum
